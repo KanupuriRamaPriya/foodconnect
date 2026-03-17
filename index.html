@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Leftover Redistribution System</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo" onclick="navigateTo('landing-page')">
+                <i class="fa-solid fa-leaf text-green"></i> 
+                <span>Food<span class="text-orange">Connect</span></span>
+            </div>
+            <div class="nav-links" id="nav-links">
+                <a href="#" onclick="navigateTo('landing-page')" class="active">Home</a>
+                <a href="#about" onclick="navigateTo('landing-page')">About</a>
+                <a href="#" onclick="navigateTo('role-selection-page')">Donate</a>
+                <a href="#" onclick="navigateTo('role-selection-page')">Dashboard</a>
+                <a href="#" onclick="navigateTo('impact-page')">Impact</a>
+            </div>
+            <div class="nav-buttons" id="nav-buttons">
+                <button class="btn btn-outline" onclick="navigateTo('login-page')">Log In</button>
+                <button class="btn btn-primary" onclick="navigateTo('role-selection-page')">Sign Up</button>
+            </div>
+            <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area (SPA implementation) -->
+    <main id="app-content">
+
+        <!-- 1) Landing / Home Page -->
+        <section id="landing-page" class="page-section active">
+            <!-- Hero Section -->
+            <div class="hero">
+                <div class="hero-content">
+                    <span class="badge">Smart Leftover Redistribution System</span>
+                    <h1 class="hero-title">Save Food.<br><span class="text-green">Feed Lives.</span></h1>
+                    <p class="hero-subtitle">Connect surplus food from donors with NGOs and volunteers instantly. Reduce waste, eliminate hunger, and build a sustainable future together.</p>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary btn-large" onclick="navigateTo('role-selection-page')">Get Started <i class="fa-solid fa-arrow-right"></i></button>
+                        <button class="btn btn-outline btn-large" onclick="navigateTo('login-page')">Login to Account</button>
+                    </div>
+                </div>
+                <div class="hero-image-placeholder">
+                    <!-- CSS will handle a nice abstract graphic/gradient here -->
+                    <div class="floating-card stat-card top-right">
+                        <div class="stat-icon"><i class="fa-solid fa-pizza-slice"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-value">5,230</span>
+                            <span class="stat-label">Meals Saved</span>
+                        </div>
+                    </div>
+                    <div class="floating-card stat-card bottom-left">
+                        <div class="stat-icon"><i class="fa-solid fa-truck-fast"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-value">Under 30m</span>
+                            <span class="stat-label">Avg. Pickup Time</span>
+                        </div>
+                    </div>
+                    <div class="blob-shape"></div>
+                </div>
+            </div>
+
+            <!-- How it works short description -->
+            <div class="how-it-works" id="about">
+                <div class="section-header">
+                    <h2>How It Works</h2>
+                    <p>A seamless connection from surplus to sustenance in three simple steps.</p>
+                </div>
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <div class="step-icon">1</div>
+                        <h3>Post Excess Food</h3>
+                        <p>Restaurants, events, or individuals list surplus food on the app with a few details.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-icon">2</div>
+                        <h3>Match & Notify</h3>
+                        <p>Nearby NGOs and volunteers are instantly notified of available, safe-to-eat food.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-icon">3</div>
+                        <h3>Pickup & Distribute</h3>
+                        <p>Volunteers quickly collect and deliver the food to shelters before it expires.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2) Role Selection Page -->
+        <section id="role-selection-page" class="page-section">
+            <div class="page-header">
+                <h2>Join the Movement</h2>
+                <p>Select your role to continue.</p>
+            </div>
+            
+            <div class="roles-grid">
+                <div class="role-card" onclick="selectRole('donor')">
+                    <div class="role-icon"><i class="fa-solid fa-hand-holding-heart text-green"></i></div>
+                    <h3>Food Donor</h3>
+                    <p>I have surplus food from a restaurant, event, or store that I want to donate.</p>
+                    <button class="btn btn-outline w-100">Continue as Donor</button>
+                </div>
+                
+                <div class="role-card" onclick="selectRole('ngo')">
+                    <div class="role-icon"><i class="fa-solid fa-house-chimney-medical text-orange"></i></div>
+                    <h3>NGO / Shelter</h3>
+                    <p>I represent an organization that needs food to distribute to those in need.</p>
+                    <button class="btn btn-outline w-100">Continue as NGO</button>
+                </div>
+
+                <div class="role-card" onclick="selectRole('volunteer')">
+                    <div class="role-icon"><i class="fa-solid fa-car-side text-blue"></i></div>
+                    <h3>Volunteer</h3>
+                    <p>I want to help pick up food from donors and deliver it to shelters.</p>
+                    <button class="btn btn-outline w-100">Continue as Volunteer</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Provide placeholders for other sections to be implemented next -->
+        <!-- 3) Login / Signup Page -->
+        <section id="login-page" class="page-section">
+            <div class="container" style="display: flex; justify-content: center; align-items: center; min-height: 70vh;">
+                <div class="auth-card" style="width: 100%; max-width: 450px; background: white; padding: 2.5rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);">
+                    <h2 class="text-center" style="margin-bottom: 0.5rem; text-align: center;">Welcome Back</h2>
+                    <p class="text-center text-muted" style="margin-bottom: 2rem; text-align: center;">Log in or create a new account.</p>
+                    
+                    <div class="auth-tabs" style="display: flex; margin-bottom: 1.5rem; border-bottom: 2px solid var(--color-border);">
+                        <button class="tab-btn active" onclick="switchAuthTab('login')" style="flex: 1; padding: 0.8rem; background: none; border: none; font-weight: 600; cursor: pointer; border-bottom: 2px solid var(--color-primary); color: var(--color-primary);">Login</button>
+                        <button class="tab-btn" onclick="switchAuthTab('signup')" style="flex: 1; padding: 0.8rem; background: none; border: none; font-weight: 600; cursor: pointer; color: var(--color-text-muted);">Sign Up</button>
+                    </div>
+
+                    <form id="auth-form" onsubmit="event.preventDefault(); simulateLogin();">
+                        <div class="form-group" id="name-group" style="display: none; margin-bottom: 1rem;">
+                            <label for="name" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Full Name</label>
+                            <input type="text" id="name" placeholder="John Doe" style="width: 100%; padding: 0.8rem; border: 1px solid var(--color-border); border-radius: var(--radius-md); font-family: var(--font-main);">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 1rem;">
+                            <label for="email" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Email Address</label>
+                            <input type="email" id="email" placeholder="john@example.com" required style="width: 100%; padding: 0.8rem; border: 1px solid var(--color-border); border-radius: var(--radius-md); font-family: var(--font-main);">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 1rem;">
+                            <label for="password" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Password</label>
+                            <input type="password" id="password" placeholder="••••••••" required style="width: 100%; padding: 0.8rem; border: 1px solid var(--color-border); border-radius: var(--radius-md); font-family: var(--font-main);">
+                        </div>
+                        <div class="form-group" id="role-group" style="display: none; margin-bottom: 1.5rem;">
+                            <label for="register-role" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">I am a</label>
+                            <select id="register-role" style="width: 100%; padding: 0.8rem; border: 1px solid var(--color-border); border-radius: var(--radius-md); font-family: var(--font-main); background: white;">
+                                <option value="donor">Food Donor</option>
+                                <option value="ngo">NGO / Shelter</option>
+                                <option value="volunteer">Volunteer</option>
+                            </select>
+                        </div>
+                        <button type="submit" id="auth-submit-btn" class="btn btn-primary w-100 btn-large mt-2">Log In</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4) Donor Dashboard Page -->
+        <section id="donor-dashboard" class="page-section">
+            <div style="background-color: var(--color-primary-light); padding: 3rem 0; margin-bottom: 2rem;">
+                <div class="container">
+                    <h2>Hello, <span class="text-green" id="user-display-name">Guest</span></h2>
+                    <p>Welcome to your dashboard. Thank you for your continued support!</p>
+                </div>
+            </div>
+            
+            <div class="container dashboard-grid" style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; margin-bottom: 4rem;">
+                <div class="dashboard-sidebar">
+                    <button class="btn btn-primary btn-large w-100" style="margin-bottom: 2rem;" onclick="navigateTo('post-donation-page')">
+                        <i class="fa-solid fa-plus"></i> Post Food Donation
+                    </button>
+                    
+                    <div class="stat-card" style="background: white; padding: 1.5rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); border: 1px solid var(--color-border); margin-bottom: 1rem;">
+                        <h3 style="font-size: 1.1rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">Total Meals Donated</h3>
+                        <div id="total-donations-count" style="font-size: 2.5rem; font-weight: 800; color: var(--color-primary);">0</div>
+                    </div>
+                    
+                    <div class="stat-card" style="background: white; padding: 1.5rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); border: 1px solid var(--color-border);">
+                        <h3 style="font-size: 1.1rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">Impact Points</h3>
+                        <div style="font-size: 2.5rem; font-weight: 800; color: var(--color-secondary);">0</div>
+                    </div>
+                </div>
+
+                <div class="dashboard-main" id="donor-donations-container">
+                    <h3 style="margin-bottom: 1.5rem;">My Recent Donations</h3>
+                    <p>Loading your donations...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5) Post Donation Page -->
+        <section id="post-donation-page" class="page-section">
+            <div class="container" style="max-width: 800px; padding: 2rem 1rem 4rem;">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;">
+                    <button class="btn btn-outline" style="padding: 0.5rem 1rem;" onclick="navigateTo('donor-dashboard')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                    <h2 style="margin-bottom: 0;">Post a Food Donation</h2>
+                </div>
+
+                <div style="background: white; padding: 2.5rem; border-radius: var(--radius-xl); box-shadow: var(--shadow-md); border: 1px solid var(--color-border);">
+                    <form onsubmit="event.preventDefault(); simulatePostDonation();">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                            <div class="form-group">
+                                <label for="food-type" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Food Type / Name</label>
+                                <input type="text" id="food-type" placeholder="e.g., Leftover Lasagna" required style="width: 100%; padding: 0.8rem; border: 1px solid var(--color-border); border-radius: var(--radius-md); font-family: var(--font-main);">
+                            </div>
+                            <div class="form-group">
+                                <label for="quantity" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Quantity (Servings/Kg)</label>
+                                <input type="text" id="quantity" placeholder="e.g., 20 Servings" required style="width: 100%; padding: 0.8rem; border: 1px solid var(--color-border); border-radius: var(--radius-md); font-family: var(--font-main);">
+                            </div>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                            <div class="form-group">
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Category</label>
+                                <div style="display: flex; gap: 1rem; margin-top: 0.8rem;">
+                                    <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;"><input type="radio" name="diet" value="veg" checked> Veg</label>
+                                    <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;"><input type="radio" name="diet" value="non-veg"> Non-Veg</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="expiry" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Expiry Time (Safe to consume until)</label>
+                                <input type="time" id="expiry" required style="width: 100%; padding: 0.8rem; border: 1px solid var(--color-border); border-radius: var(--radius-md); font-family: var(--font-main);">
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 1.5rem;">
+                            <label for="pickup-loc" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Pickup Location</label>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <input type="text" id="pickup-loc" placeholder="123 Main St, City" required style="flex: 1; padding: 0.8rem; border: 1px solid var(--color-border); border-radius: var(--radius-md); font-family: var(--font-main);">
+                                <button type="button" class="btn btn-outline" style="color: var(--color-secondary); border-color: var(--color-secondary);"><i class="fa-solid fa-location-dot"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 2rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Upload Photo (Opitonal but recommended)</label>
+                            <div style="border: 2px dashed var(--color-border); border-radius: var(--radius-lg); padding: 3rem 2rem; text-align: center; color: var(--color-text-muted); cursor: pointer; background: var(--color-bg);">
+                                <i class="fa-solid fa-cloud-arrow-up" style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--color-primary);"></i>
+                                <p style="margin-bottom: 0;">Drag & drop or click to upload</p>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-large w-100"><i class="fa-solid fa-check"></i> Submit Donation</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6) NGO / Volunteer Dashboard -->
+        <section id="ngo-dashboard" class="page-section">
+            <div style="background-color: var(--color-secondary-light); padding: 3rem 0; margin-bottom: 2rem;">
+                <div class="container">
+                    <h2>Hello, <span class="text-orange" id="ngo-display-name">Organization</span></h2>
+                    <p>Find available food donations nearby to pickup and distribute.</p>
+                </div>
+            </div>
+
+            <div class="container" style="max-width: 1000px; margin-bottom: 4rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+                    <h3 style="margin-bottom: 0;">Nearby Donations</h3>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="btn btn-outline" style="padding: 0.5rem 1rem; border-radius: 2rem;"><i class="fa-solid fa-filter"></i> Filter</button>
+                        <button class="btn btn-outline" style="padding: 0.5rem 1rem; border-radius: 2rem; background: var(--color-primary); color: white; border-color: var(--color-primary);">Closest First</button>
+                    </div>
+                </div>
+
+                <div id="available-donations-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;">
+                    <p style="grid-column: 1/-1; text-align: center;">Loading available donations...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7) Donation Details Page -->
+        <section id="donation-details" class="page-section">
+            <div class="container" style="max-width: 900px; padding: 2rem 1rem 4rem;">
+                <button class="btn btn-outline" style="padding: 0.5rem 1rem; margin-bottom: 1.5rem;" onclick="navigateTo('ngo-dashboard')"><i class="fa-solid fa-arrow-left"></i> Back to Listings</button>
+                
+                <div style="background: white; border-radius: var(--radius-xl); box-shadow: var(--shadow-md); overflow: hidden; border: 1px solid var(--color-border); display: grid; grid-template-columns: 1fr 1fr; @media (max-width: 768px) { grid-template-columns: 1fr; }">
+                    
+                    <!-- Left: Details -->
+                    <div style="padding: 2.5rem;">
+                        <span style="display: inline-block; padding: 0.3rem 0.8rem; background: #dcfce7; color: #166534; border-radius: 2rem; font-size: 0.8rem; font-weight: 700; margin-bottom: 1rem;"><i class="fa-solid fa-shield-halved"></i> Verified Safe</span>
+                        
+                        <h2 style="margin-bottom: 0.5rem; font-size: 2rem;">Fresh Assorted Breads</h2>
+                        <p style="font-size: 1.1rem; color: var(--color-text-main); font-weight: 500; margin-bottom: 1.5rem;">Downtown Bakery</p>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; padding: 1.5rem; background: var(--color-bg); border-radius: var(--radius-lg);">
+                            <div>
+                                <p style="font-size: 0.85rem; margin-bottom: 0.2rem; text-transform: uppercase; font-weight: 700;">Quantity</p>
+                                <p style="font-weight: 600; color: var(--color-text-main); margin-bottom: 0; font-size: 1.1rem;"><i class="fa-solid fa-layer-group text-primary"></i> 50 Servings</p>
+                            </div>
+                            <div>
+                                <p style="font-size: 0.85rem; margin-bottom: 0.2rem; text-transform: uppercase; font-weight: 700;">Category</p>
+                                <p style="font-weight: 600; color: var(--color-text-main); margin-bottom: 0; font-size: 1.1rem;"><i class="fa-solid fa-leaf text-green"></i> Vegetarian</p>
+                            </div>
+                            <div>
+                                <p style="font-size: 0.85rem; margin-bottom: 0.2rem; text-transform: uppercase; font-weight: 700;">Expiring In</p>
+                                <p style="font-weight: 700; color: #ef4444; margin-bottom: 0; font-size: 1.1rem;"><i class="fa-regular fa-clock"></i> 2h 15m</p>
+                            </div>
+                            <div>
+                                <p style="font-size: 0.85rem; margin-bottom: 0.2rem; text-transform: uppercase; font-weight: 700;">Pickup Window</p>
+                                <p style="font-weight: 600; color: var(--color-text-main); margin-bottom: 0; font-size: 1.1rem;">Before 5:00 PM</p>
+                            </div>
+                        </div>
+
+                        <button id="accept-pickup-btn" class="btn btn-primary btn-large w-100" onclick="simulateAcceptPickup()"><i class="fa-solid fa-truck-fast"></i> Accept Pickup</button>
+                    </div>
+
+                    <!-- Right: Map/Location -->
+                    <div style="background: var(--color-bg); border-left: 1px solid var(--color-border); display: flex; flex-direction: column;">
+                        <div style="flex: 1; background: #e2e8f0; position: relative; min-height: 250px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                            <!-- CSS Map Placeholder -->
+                            <div style="position: absolute; width: 100%; height: 100%; object-fit: cover; opacity: 0.5; background-image: radial-gradient(#cbd5e1 2px, transparent 2px); background-size: 20px 20px;"></div>
+                            
+                            <!-- Map Pin -->
+                            <div style="position: absolute; color: var(--color-primary); font-size: 3rem; animation: bounce 2s infinite;">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+
+                            <style>
+                                @keyframes bounce {
+                                    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+                                    40% { transform: translateY(-20px); }
+                                    60% { transform: translateY(-10px); }
+                                }
+                            </style>
+                        </div>
+                        <div style="padding: 1.5rem;">
+                            <h4 style="margin-bottom: 0.5rem;"><i class="fa-solid fa-map-location-dot text-primary"></i> Pickup Location</h4>
+                            <p style="margin-bottom: 0.5rem; color: var(--color-text-main); font-weight: 500;">456 Bakery Lane, Downtown District</p>
+                            <p style="font-size: 0.9rem;">Distance: 1.2 miles (approx. 8 mins drive)</p>
+                            <a href="#" style="color: var(--color-blue); font-weight: 600; font-size: 0.9rem;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Get Directions</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8) Impact Statistics Page -->
+        <section id="impact-page" class="page-section">
+            <div style="background: linear-gradient(135deg, #0f172a, #1e293b); color: white; padding: 4rem 0;">
+                <div class="container text-center" style="max-width: 800px; margin: 0 auto; text-align: center;">
+                    <span class="badge" style="background: rgba(255,255,255,0.1); color: var(--color-primary-light);">Our Global Impact</span>
+                    <h2 style="font-size: 3rem; margin-bottom: 1rem;">Making a Real Difference</h2>
+                    <p style="color: #cbd5e1; font-size: 1.1rem;">See how our community is working together to eliminate food waste and support those in need.</p>
+                </div>
+            </div>
+
+            <div class="container" style="margin-top: -3rem; margin-bottom: 4rem; position: relative;">
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+                    <div style="background: white; padding: 2.5rem 1.5rem; border-radius: var(--radius-xl); box-shadow: var(--shadow-lg); text-align: center;">
+                        <div style="width: 80px; height: 80px; margin: 0 auto 1.5rem; background: var(--color-primary-light); color: var(--color-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem;">
+                            <i class="fa-solid fa-bowl-food"></i>
+                        </div>
+                        <h3 style="font-size: 2.5rem; font-weight: 800; color: var(--color-text-main); margin-bottom: 0.5rem;">24,500+</h3>
+                        <p style="font-weight: 600; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem;">Meals Served</p>
+                    </div>
+
+                    <div style="background: white; padding: 2.5rem 1.5rem; border-radius: var(--radius-xl); box-shadow: var(--shadow-lg); text-align: center;">
+                        <div style="width: 80px; height: 80px; margin: 0 auto 1.5rem; background: var(--color-secondary-light); color: var(--color-secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem;">
+                            <i class="fa-solid fa-weight-scale"></i>
+                        </div>
+                        <h3 style="font-size: 2.5rem; font-weight: 800; color: var(--color-text-main); margin-bottom: 0.5rem;">8,200 kg</h3>
+                        <p style="font-weight: 600; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem;">Food Saved</p>
+                    </div>
+
+                    <div style="background: white; padding: 2.5rem 1.5rem; border-radius: var(--radius-xl); box-shadow: var(--shadow-lg); text-align: center;">
+                        <div style="width: 80px; height: 80px; margin: 0 auto 1.5rem; background: #e0f2fe; color: var(--color-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem;">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <h3 style="font-size: 2.5rem; font-weight: 800; color: var(--color-text-main); margin-bottom: 0.5rem;">15.4 t</h3>
+                        <p style="font-weight: 600; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem;">CO2 Reduced</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Leaderboard Section -->
+            <div class="container" style="max-width: 900px; margin-bottom: 5rem;">
+                <h3 style="text-align: center; margin-bottom: 2rem;">Top Donors This Month</h3>
+                <div style="background: white; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); overflow: hidden; border: 1px solid var(--color-border);">
+                    
+                    <div style="display: flex; align-items: center; padding: 1.5rem 2rem; border-bottom: 1px solid var(--color-border); background: #f8fafc;">
+                        <div style="width: 50px; font-weight: 700; color: var(--color-text-muted);">Rank</div>
+                        <div style="flex: 1; font-weight: 700; color: var(--color-text-muted);">Donor Name</div>
+                        <div style="width: 150px; font-weight: 700; color: var(--color-text-muted); text-align: right;">Meals Donated</div>
+                    </div>
+
+                    <div style="display: flex; align-items: center; padding: 1.5rem 2rem; border-bottom: 1px solid var(--color-border); transition: background 0.2s;">
+                        <div style="width: 50px; font-weight: 800; font-size: 1.2rem; color: #fbbf24;"><i class="fa-solid fa-trophy"></i> 1</div>
+                        <div style="flex: 1; font-weight: 600; font-size: 1.1rem;">FreshFoods Restaurant</div>
+                        <div style="width: 150px; font-weight: 800; color: var(--color-primary); text-align: right; font-size: 1.1rem;">1,240</div>
+                    </div>
+
+                    <div style="display: flex; align-items: center; padding: 1.5rem 2rem; border-bottom: 1px solid var(--color-border); transition: background 0.2s;">
+                        <div style="width: 50px; font-weight: 800; font-size: 1.2rem; color: #94a3b8;">2</div>
+                        <div style="flex: 1; font-weight: 600; font-size: 1.1rem;">City Bakery Chain</div>
+                        <div style="width: 150px; font-weight: 800; color: var(--color-primary); text-align: right; font-size: 1.1rem;">985</div>
+                    </div>
+
+                    <div style="display: flex; align-items: center; padding: 1.5rem 2rem; transition: background 0.2s;">
+                        <div style="width: 50px; font-weight: 800; font-size: 1.2rem; color: #b45309;">3</div>
+                        <div style="flex: 1; font-weight: 600; font-size: 1.1rem;">Green Leaf Catering</div>
+                        <div style="width: 150px; font-weight: 800; color: var(--color-primary); text-align: right; font-size: 1.1rem;">750</div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <div class="logo">
+                    <i class="fa-solid fa-leaf text-green"></i> Food<span class="text-orange">Connect</span>
+                </div>
+                <p>Smart Leftover Redistribution System designed to eliminate food waste and hunger.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="#" onclick="navigateTo('landing-page')">Home</a>
+                <a href="#" onclick="navigateTo('role-selection-page')">Donate</a>
+                <a href="#" onclick="navigateTo('impact-page')">Impact Report</a>
+            </div>
+            <div class="footer-social">
+                <h4>Connect With Us</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+                <p class="contact-info mt-2"><i class="fa-solid fa-envelope"></i> hello@foodconnect.org</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Smart Leftover Redistribution System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
